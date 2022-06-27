@@ -1,20 +1,17 @@
 package com.ogawalucas.ecommercekafka;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.Properties;
 
 @Slf4j
 public class EmailService {
 
     public static void main(String[] args) {
-        new KafkaService(EmailService.class.getSimpleName(), "ECOMMERCE_SEND_EMAIL", new EmailService()::parse).run();
+        var emailService = new EmailService();
+
+        try (var service = new KafkaService(EmailService.class.getSimpleName(), "ECOMMERCE_SEND_EMAIL", emailService::parse)) {
+            service.run();
+        };
     }
 
     private void parse(ConsumerRecord<String, String> record) {

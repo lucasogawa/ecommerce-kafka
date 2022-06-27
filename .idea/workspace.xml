@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/EmailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/FraudDetectorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/KafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/NewOrderMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -133,8 +135,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.NewOrderMain" />
-        <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.LogService" />
+        <item itemvalue="Application.EmailService" />
         <item itemvalue="Application.FraudDetectorService" />
       </list>
     </recent_temporary>
