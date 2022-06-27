@@ -7,7 +7,6 @@
     <list default="true" id="7483eaeb-1a94-4755-929f-129976ba9ea6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ogawalucas/ecommercekafka/NewOrderMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
