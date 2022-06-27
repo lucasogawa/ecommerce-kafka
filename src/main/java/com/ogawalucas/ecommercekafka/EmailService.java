@@ -2,6 +2,7 @@ package com.ogawalucas.ecommercekafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
@@ -13,39 +14,18 @@ import java.util.Properties;
 public class EmailService {
 
     public static void main(String[] args) {
-        var consumer = new KafkaConsumer<String, String>(properties());
-
-        consumer.subscribe(List.of("ECOMMERCE_SEND_EMAIL"));
-
-        while (true) {
-            var records = consumer.poll(Duration.ofMillis(100));
-
-            if (!records.isEmpty()) {
-                log.info("Found " + records.count() + " records!\n");
-
-                for(var record : records) {
-                    log.info("====================================");
-                    log.info("Sending email");
-                    log.info("KEY:       " + record.key());
-                    log.info("VALUE:     " + record.value());
-                    log.info("PARTITION: " + record.partition());
-                    log.info("OFFSET:    " + record.offset());
-
-                    sleep(1000);
-                }
-            }
-        }
+        new KafkaService(EmailService.class.getSimpleName(), "ECOMMERCE_SEND_EMAIL", new EmailService()::parse).run();
     }
 
-    public static Properties properties() {
-        var properties = new Properties();
+    private void parse(ConsumerRecord<String, String> record) {
+        log.info("====================================");
+        log.info("Sending email");
+        log.info("KEY:       " + record.key());
+        log.info("VALUE:     " + record.value());
+        log.info("PARTITION: " + record.partition());
+        log.info("OFFSET:    " + record.offset());
 
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.1:9092");
-        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, EmailService.class.getSimpleName());
-
-        return properties;
+        sleep(1000);
     }
 
     private static void sleep(long time) {
