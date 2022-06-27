@@ -1,6 +1,7 @@
 package com.ogawalucas.ecommercekafka;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -16,8 +17,7 @@ public class NewOrderMain {
         var producer = new KafkaProducer<String, String>(properties());
         var value = "123_456_7890";
         var record = new ProducerRecord<>("ECOMMERCE_NEW_ORDER", value, value);
-
-        producer.send(record, (data, ex) -> {
+        Callback callback = (data, ex) -> {
             if (ex != null) {
                 ex.printStackTrace();
                 return;
@@ -25,7 +25,12 @@ public class NewOrderMain {
 
             log.info("Sucesso enviando " + data.topic() + ":::particition " + data.partition() + "/ offset: "
                 + data.offset() + "/ timestamp: " + data.timestamp());
-        }).get();
+        };
+        var email = "Thank you for your order! Whe are processing your order!";
+        var emailRecord = new ProducerRecord<>("ECOMMERCE_SEND_EMAIL", email, email);
+
+        producer.send(record, callback).get();
+        producer.send(emailRecord).get();
     }
 
     public static Properties properties() {
