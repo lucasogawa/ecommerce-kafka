@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Slf4j
 public class KafkaService implements Closeable {
@@ -18,10 +19,20 @@ public class KafkaService implements Closeable {
     private final ConsumerFunction parse;
 
     public KafkaService(String groupId, String topic, ConsumerFunction parse) {
-        this.consumer = new KafkaConsumer<String, String>(properties(groupId));
-        this.parse = parse;
+        this(groupId, parse);
 
         consumer.subscribe(List.of(topic));
+    }
+
+    public KafkaService(String groupId, Pattern pattern, ConsumerFunction parse) {
+        this(groupId, parse);
+
+        consumer.subscribe(pattern);
+    }
+
+    private KafkaService(String groupId, ConsumerFunction parse) {
+        this.consumer = new KafkaConsumer<String, String>(properties(groupId));
+        this.parse = parse;
     }
 
     public static Properties properties(String groupId) {
@@ -41,9 +52,9 @@ public class KafkaService implements Closeable {
             var records = consumer.poll(Duration.ofMillis(100));
 
             if (!records.isEmpty()) {
-                log.info("Found " + records.count() + " records!\n");
+                log.info("\nFound " + records.count() + " records!");
 
-                for(var record : records) {
+                for (var record : records) {
                     parse.consume(record);
                 }
             }
