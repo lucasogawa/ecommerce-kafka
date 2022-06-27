@@ -21,7 +21,7 @@ public class EmailService {
             var records = consumer.poll(Duration.ofMillis(100));
 
             if (!records.isEmpty()) {
-                log.info("Found " + records.count() + " records!");
+                log.info("Found " + records.count() + " records!\n");
 
                 for(var record : records) {
                     log.info("====================================");
