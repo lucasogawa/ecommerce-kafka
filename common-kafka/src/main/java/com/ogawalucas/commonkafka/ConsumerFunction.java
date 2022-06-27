@@ -1,4 +1,4 @@
-package com.ogawalucas.ecommercekafka;
+package com.ogawalucas.commonkafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 

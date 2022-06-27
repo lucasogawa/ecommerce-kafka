@@ -1,4 +1,4 @@
-package com.ogawalucas.ecommercekafka;
+package com.ogawalucas.commonkafka;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
