@@ -1,7 +1,6 @@
 package com.ogawalucas.serviceneworder;
 
 import com.ogawalucas.commonkafka.KafkaDispatcher;
-import com.ogawalucas.ecommercekafka.Order;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;

@@ -1,7 +1,6 @@
 package com.ogawalucas.frauddetector;
 
 import com.ogawalucas.commonkafka.KafkaService;
-import com.ogawalucas.ecommercekafka.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 

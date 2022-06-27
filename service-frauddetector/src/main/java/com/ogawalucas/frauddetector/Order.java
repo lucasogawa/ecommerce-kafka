@@ -1,4 +1,4 @@
-package com.ogawalucas.ecommercekafka;
+package com.ogawalucas.frauddetector;
 
 import lombok.AllArgsConstructor;
 
