@@ -3,18 +3,26 @@ package com.ogawalucas.ecommercekafka;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.util.Map;
+
 @Slf4j
 public class FraudDetectorService {
 
     public static void main(String[] args) {
         var fraudDetectorService = new FraudDetectorService();
 
-        try (var service = new KafkaService(FraudDetectorService.class.getSimpleName(), "ECOMMERCE_NEW_ORDER", fraudDetectorService::parse)) {
+        try (var service = new KafkaService(
+            FraudDetectorService.class.getSimpleName(),
+            "ECOMMERCE_NEW_ORDER",
+            fraudDetectorService::parse,
+            Order.class,
+            Map.of()
+        )) {
             service.run();
         }
     }
 
-    private void parse(ConsumerRecord<String, String> record) {
+    private void parse(ConsumerRecord<String, Order> record) {
         log.info("====================================");
         log.info("Processing new order, checking for fraud...");
         log.info("KEY:       " + record.key());
